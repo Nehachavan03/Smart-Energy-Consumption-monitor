@@ -1,18 +1,20 @@
 package com.energy.monitor.models;
 
+/**
+ * Model class for an electrical appliance.
+ */
 public class Appliance {
-
     private String id;
     private String name;
     private double powerWatts;
 
-    // Constructor (your version)
+    // Constructor with name and power
     public Appliance(String name, double powerWatts) {
         this.name = name;
         this.powerWatts = powerWatts;
     }
 
-    // Constructor (for test files)
+    // Full constructor
     public Appliance(String id, String name, double powerWatts) {
         this.id = id;
         this.name = name;
@@ -29,5 +31,10 @@ public class Appliance {
 
     public double getPowerWatts() {
         return powerWatts;
+    }
+
+    @Override
+    public String toString() {
+        return name + " (" + powerWatts + "W)";
     }
 }

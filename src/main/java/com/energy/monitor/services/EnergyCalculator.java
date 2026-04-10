@@ -4,7 +4,7 @@ import com.energy.monitor.models.UsageRecord;
 
 public class EnergyCalculator {
 
-    public double calculateEnergy(UsageRecord record) {
+    public double computeEnergyKWh(UsageRecord record) {
         return record.getEnergyKWh();
     }
 }

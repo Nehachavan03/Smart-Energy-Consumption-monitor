@@ -60,12 +60,12 @@ public class Main {
         printDetails(r2, energyCalculator, carbonCalculator);
         printDetails(r3, energyCalculator, carbonCalculator);
 
-        double totalEnergy = energyCalculator.calculateEnergy(r1)
-                + energyCalculator.calculateEnergy(r2)
-                + energyCalculator.calculateEnergy(r3);
-        double totalCarbon = carbonCalculator.calculateCarbon(r1)
-                + carbonCalculator.calculateCarbon(r2)
-                + carbonCalculator.calculateCarbon(r3);
+        double totalEnergy = energyCalculator.computeEnergyKWh(r1)
+                + energyCalculator.computeEnergyKWh(r2)
+                + energyCalculator.computeEnergyKWh(r3);
+        double totalCarbon = carbonCalculator.computeCarbonKG(r1)
+                + carbonCalculator.computeCarbonKG(r2)
+                + carbonCalculator.computeCarbonKG(r3);
 
         System.out.println("\n----- Total Summary -----");
         System.out.println("Total Energy Consumption: " + String.format("%.2f", totalEnergy) + " kWh");
@@ -80,17 +80,20 @@ public class Main {
         System.out.println("\n----- Room Energy Totals -----");
         RoomNode living = roomTree.findRoom(roomTree.getRoot(), "Living Room");
         if (living != null) {
-            System.out.println("Living Room total: " + String.format("%.2f", analysisService.calculateRoomTotal(living)) + " kWh");
+            System.out.println(
+                    "Living Room total: " + String.format("%.2f", analysisService.calculateRoomTotal(living)) + " kWh");
         }
 
         RoomNode bedroomNode = roomTree.findRoom(roomTree.getRoot(), "Bedroom");
         if (bedroomNode != null) {
-            System.out.println("Bedroom total: " + String.format("%.2f", analysisService.calculateRoomTotal(bedroomNode)) + " kWh");
+            System.out.println("Bedroom total: "
+                    + String.format("%.2f", analysisService.calculateRoomTotal(bedroomNode)) + " kWh");
         }
 
         RoomNode kitchen = roomTree.findRoom(roomTree.getRoot(), "Kitchen");
         if (kitchen != null) {
-            System.out.println("Kitchen total: " + String.format("%.2f", analysisService.calculateRoomTotal(kitchen)) + " kWh");
+            System.out.println(
+                    "Kitchen total: " + String.format("%.2f", analysisService.calculateRoomTotal(kitchen)) + " kWh");
         }
 
         Map<String, UsageRecord> recordMap = new HashMap<String, UsageRecord>();
@@ -112,8 +115,7 @@ public class Main {
     public static void printDetails(UsageRecord record, EnergyCalculator ec, CarbonCalculator cc) {
         System.out.println(
                 record.getAppliance().getName() + " x" + record.getQuantity()
-                        + " → Energy: " + String.format("%.2f", ec.calculateEnergy(record)) + " kWh"
-                        + ", Carbon: " + String.format("%.2f", cc.calculateCarbon(record)) + " kg CO2"
-        );
+                        + " -> Energy: " + String.format("%.2f", ec.computeEnergyKWh(record)) + " kWh"
+                        + ", Carbon: " + String.format("%.2f", cc.computeCarbonKG(record)) + " kg CO2");
     }
 }

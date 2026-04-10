@@ -11,6 +11,14 @@ public class EnergyStore {
         applianceEnergy.put(record.getAppliance().getName(), record);
     }
 
+    public UsageRecord getUsage(String applianceName) {
+        return applianceEnergy.get(applianceName);
+    }
+
+    public Map<String, UsageRecord> getAllData() {
+        return applianceEnergy;
+    }
+
     public void printAll() {
         for (String key : applianceEnergy.keySet()) {
             System.out.println(key + " -> " +
