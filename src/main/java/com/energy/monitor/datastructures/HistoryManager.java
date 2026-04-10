@@ -18,7 +18,8 @@ public class HistoryManager {
     }
 
     public UsageRecord getLastRecord() {
-        if (history.isEmpty()) return null;
+        if (history.isEmpty())
+            return null;
         return history.getLast();
     }
 }

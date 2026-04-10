@@ -6,7 +6,6 @@ import java.util.HashMap;
 import java.util.Map;
 import javax.swing.*;
 
-
 public class ConsoleUI {
 
     private final Map<String, String> users = new HashMap<>();
@@ -89,14 +88,16 @@ public class ConsoleUI {
             String username = userField.getText().trim();
             String password = new String(passField.getPassword()).trim();
             if (username.isEmpty() || password.isEmpty()) {
-                JOptionPane.showMessageDialog(frame, "Enter username and password.", "Validation", JOptionPane.WARNING_MESSAGE);
+                JOptionPane.showMessageDialog(frame, "Enter username and password.", "Validation",
+                        JOptionPane.WARNING_MESSAGE);
                 return;
             }
             if (authenticate(username, password)) {
                 frame.dispose();
                 openDashboard(username);
             } else {
-                JOptionPane.showMessageDialog(frame, "Invalid credentials. Please try again.", "Login Failed", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(frame, "Invalid credentials. Please try again.", "Login Failed",
+                        JOptionPane.ERROR_MESSAGE);
             }
         });
 
@@ -153,14 +154,17 @@ public class ConsoleUI {
             String username = nameField.getText().trim();
             String password = new String(passField.getPassword()).trim();
             if (username.isEmpty() || password.isEmpty()) {
-                JOptionPane.showMessageDialog(dialog, "Please enter both fields.", "Validation", JOptionPane.WARNING_MESSAGE);
+                JOptionPane.showMessageDialog(dialog, "Please enter both fields.", "Validation",
+                        JOptionPane.WARNING_MESSAGE);
                 return;
             }
             if (registerUser(username, password)) {
-                JOptionPane.showMessageDialog(dialog, "Account created successfully. You can now log in.", "Success", JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(dialog, "Account created successfully. You can now log in.", "Success",
+                        JOptionPane.INFORMATION_MESSAGE);
                 dialog.dispose();
             } else {
-                JOptionPane.showMessageDialog(dialog, "Username already exists. Choose another.", "Signup Failed", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(dialog, "Username already exists. Choose another.", "Signup Failed",
+                        JOptionPane.ERROR_MESSAGE);
             }
         });
 

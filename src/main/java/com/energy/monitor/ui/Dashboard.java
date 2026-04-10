@@ -29,6 +29,7 @@ public class Dashboard extends JFrame {
     private final JLabel totalEnergyLabel = new JLabel();
     private final JLabel totalCarbonLabel = new JLabel();
     private final JLabel highestUsageLabel = new JLabel();
+    private final JLabel highestCarbonLabel = new JLabel();
     private final JTextArea roomTotalsArea = new JTextArea(5, 20);
     private final JComboBox<String> roomBox = new JComboBox<>(
             new String[] { "Living Room", "Bedroom", "Kitchen", "Bathroom", "Office", "Dining Room" });
@@ -105,7 +106,7 @@ public class Dashboard extends JFrame {
         rightPanel.setLayout(new BoxLayout(rightPanel, BoxLayout.Y_AXIS));
         rightPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
 
-        JPanel summaryPanel = new JPanel(new GridLayout(3, 1, 12, 12));
+        JPanel summaryPanel = new JPanel(new GridLayout(4, 1, 12, 12));
         summaryPanel.setBackground(new Color(30, 41, 59)); // Premium Slate Blue
         summaryPanel.setBorder(BorderFactory.createCompoundBorder(
                 BorderFactory.createTitledBorder(BorderFactory.createLineBorder(new Color(71, 85, 105)), "Summary", 0,
@@ -118,9 +119,12 @@ public class Dashboard extends JFrame {
         totalCarbonLabel.setForeground(Color.WHITE);
         highestUsageLabel.setFont(new Font("Segoe UI", Font.BOLD, 15));
         highestUsageLabel.setForeground(new Color(200, 220, 240));
+        highestCarbonLabel.setFont(new Font("Segoe UI", Font.BOLD, 15));
+        highestCarbonLabel.setForeground(new Color(255, 180, 180)); // Soft Red for carbon
         summaryPanel.add(totalEnergyLabel);
         summaryPanel.add(totalCarbonLabel);
         summaryPanel.add(highestUsageLabel);
+        summaryPanel.add(highestCarbonLabel);
 
         roomTotalsArea.setBackground(new Color(15, 23, 42)); // Deep Navy
         roomTotalsArea.setForeground(new Color(56, 189, 248)); // Vibrant Blue
@@ -276,10 +280,13 @@ public class Dashboard extends JFrame {
         // Alg Integration: Use MaxHeap for top usage
         UsageRecord top = usageHeap.peek();
         if (top != null) {
-            highestUsageLabel.setText("Highest usage: " + top.getAppliance().getName() + " ("
+            highestUsageLabel.setText("Top Energy: " + top.getRoom() + " -> " + top.getAppliance().getName() + " ("
                     + String.format("%.2f", top.getEnergyKWh()) + " kWh)");
+            highestCarbonLabel.setText("Top Carbon: " + top.getRoom() + " -> " + top.getAppliance().getName() + " ("
+                    + String.format("%.2f", carbonCalculator.computeCarbonKG(top)) + " kg)");
         } else {
-            highestUsageLabel.setText("Highest usage: none");
+            highestUsageLabel.setText("Top Energy: none");
+            highestCarbonLabel.setText("Top Carbon: none");
         }
 
         // Alg Integration: Room-wise summary from RoomTree
