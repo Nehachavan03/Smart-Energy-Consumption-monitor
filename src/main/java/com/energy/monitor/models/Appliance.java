@@ -2,18 +2,12 @@ package com.energy.monitor.models;
 
 public class Appliance {
 
-    private String id;
     private String name;
     private double powerWatts;
 
-    public Appliance(String id, String name, double powerWatts) {
-        this.id = id;
+    public Appliance(String name, double powerWatts) {
         this.name = name;
         this.powerWatts = powerWatts;
-    }
-
-    public String getId() {
-        return id;
     }
 
     public String getName() {
@@ -22,10 +16,5 @@ public class Appliance {
 
     public double getPowerWatts() {
         return powerWatts;
-    }
-
-    @Override
-    public String toString() {
-        return id + " | " + name + " | " + powerWatts + "W";
     }
 }

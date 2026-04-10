@@ -4,7 +4,7 @@ public class UsageRecord {
 
     private String recordId;
     private Appliance appliance;
-    private int quantity; // NEW: number of appliances
+    private int quantity;
     private double hoursUsed;
 
     public UsageRecord(String recordId, Appliance appliance, int quantity, double hoursUsed) {
@@ -30,7 +30,6 @@ public class UsageRecord {
         return hoursUsed;
     }
 
-    // Updated energy calculation
     public double getEnergyKWh() {
         return (appliance.getPowerWatts() * quantity * hoursUsed) / 1000.0;
     }
@@ -38,8 +37,8 @@ public class UsageRecord {
     @Override
     public String toString() {
         return recordId + " | " +
-                appliance.getName() + " x" + quantity + " | " +
-                hoursUsed + " hrs | " +
-                getEnergyKWh() + " kWh";
+               appliance.getName() + " x" + quantity + " | " +
+               hoursUsed + " hrs | " +
+               getEnergyKWh() + " kWh";
     }
 }

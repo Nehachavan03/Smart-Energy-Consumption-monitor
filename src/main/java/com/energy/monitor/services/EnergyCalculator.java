@@ -1,9 +1,10 @@
 package com.energy.monitor.services;
 
-/**
- * Service: Performs core energy consumption calculations.
- * Calculates energy in kWh based on power and time.
- */
+import com.energy.monitor.models.UsageRecord;
+
 public class EnergyCalculator {
-    // Logic for calculating energy consumption
+
+    public double calculateEnergy(UsageRecord record) {
+        return record.getEnergyKWh();
+    }
 }
