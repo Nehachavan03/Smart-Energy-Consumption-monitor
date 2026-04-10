@@ -1,9 +1,20 @@
 package com.energy.monitor.datastructures;
 
-/**
- * Data Structure: Manages storage of appliance data.
- * Handles separation of static power data and dynamic usage mappings.
- */
+import com.energy.monitor.models.*;
+import java.util.*;
+
 public class EnergyStore {
-    // Methods for storing and retrieving appliance data
+
+    private Map<String, UsageRecord> applianceEnergy = new HashMap<>();
+
+    public void addUsageRecord(UsageRecord record) {
+        applianceEnergy.put(record.getAppliance().getName(), record);
+    }
+
+    public void printAll() {
+        for (String key : applianceEnergy.keySet()) {
+            System.out.println(key + " -> " +
+                    applianceEnergy.get(key).getEnergyKWh() + " kWh");
+        }
+    }
 }

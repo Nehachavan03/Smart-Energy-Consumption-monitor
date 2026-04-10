@@ -1,9 +1,10 @@
 package com.energy.monitor.services;
 
-/**
- * Service: Calculates carbon footprint based on energy usage.
- * Converts kWh into CO2 emission estimates.
- */
+import com.energy.monitor.models.UsageRecord;
+
 public class CarbonCalculator {
-    // Logic for calculating carbon footprint
+
+    public double calculateCarbon(UsageRecord record) {
+        return record.getEnergyKWh() * 0.82;
+    }
 }
