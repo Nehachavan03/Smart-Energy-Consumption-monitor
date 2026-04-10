@@ -1,9 +1,25 @@
 package com.energy.monitor.services;
 
-/**
- * Service: Orchestration layer for analysis and reporting.
- * Coordinates between calculators and data stores to process and rank usage data.
- */
+import com.energy.monitor.models.*;
+import java.util.*;
+
 public class AnalysisService {
-    // Logic for orchestrating analysis and categorization
+
+    public List<UsageRecord> getTopConsumers(Map<String, UsageRecord> data, int k) {
+        List<UsageRecord> list = new ArrayList<>(data.values());
+
+        list.sort((a, b) -> Double.compare(b.getEnergyKWh(), a.getEnergyKWh()));
+
+        return list.subList(0, Math.min(k, list.size()));
+    }
+
+    public double calculateRoomTotal(RoomNode room) {
+        double total = 0;
+
+        for (UsageRecord r : room.getAppliances()) {
+            total += r.getEnergyKWh();
+        }
+
+        return total;
+    }
 }

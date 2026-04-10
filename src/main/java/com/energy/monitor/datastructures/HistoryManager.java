@@ -1,9 +1,24 @@
 package com.energy.monitor.datastructures;
 
-/**
- * Data Structure: Manages a chronological list of usage history.
- * Uses a linked structure to store and retrieve past energy records.
- */
+import com.energy.monitor.models.UsageRecord;
+import java.util.LinkedList;
+
 public class HistoryManager {
-    // Methods for adding and retrieving history records
+
+    private LinkedList<UsageRecord> history = new LinkedList<>();
+
+    public void addRecord(UsageRecord record) {
+        history.add(record);
+    }
+
+    public void printHistory() {
+        for (UsageRecord r : history) {
+            System.out.println(r);
+        }
+    }
+
+    public UsageRecord getLastRecord() {
+        if (history.isEmpty()) return null;
+        return history.getLast();
+    }
 }
