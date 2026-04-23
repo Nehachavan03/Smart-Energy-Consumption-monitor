@@ -12,18 +12,18 @@ public class Main {
 
     public static void main(String[] args) {
 
-        // ===== Initialize Backend Services =====
+        
         EnergyCalculator energyCalculator = new EnergyCalculator();
         CarbonCalculator carbonCalculator = new CarbonCalculator();
         AnalysisService analysisService = new AnalysisService();
 
-        // ===== Initialize Data Structures =====
+        
         EnergyStore store = new EnergyStore();
         RoomTree roomTree = new RoomTree("Home");
         HistoryManager historyManager = new HistoryManager();
         MaxHeap usageHeap = new MaxHeap();
 
-        // ===== Create Appliances and Usage Records =====
+        
         Appliance ac = new Appliance("AC", 1500);
         Appliance fan = new Appliance("Fan", 75);
         Appliance light = new Appliance("Light", 20);
@@ -32,7 +32,7 @@ public class Main {
         UsageRecord r2 = new UsageRecord("R2", fan, 2, 10.0, "Bedroom");
         UsageRecord r3 = new UsageRecord("R3", light, 3, 8.0, "Kitchen");
 
-        // ===== Store Records =====
+        
         store.addUsageRecord(r1);
         store.addUsageRecord(r2);
         store.addUsageRecord(r3);
@@ -45,7 +45,7 @@ public class Main {
         usageHeap.insert(r2);
         usageHeap.insert(r3);
 
-        // ===== Build room structure =====
+        
         roomTree.addRoom("Home", "Living Room");
         roomTree.addRoom("Home", "Bedroom");
         roomTree.addRoom("Home", "Kitchen");
@@ -54,7 +54,7 @@ public class Main {
         roomTree.addApplianceToRoom("Bedroom", r2);
         roomTree.addApplianceToRoom("Kitchen", r3);
 
-        // ===== Display backend results =====
+        
         System.out.println("----- Individual Calculations -----");
         printDetails(r1, energyCalculator, carbonCalculator);
         printDetails(r2, energyCalculator, carbonCalculator);
@@ -107,11 +107,11 @@ public class Main {
             printDetails(record, energyCalculator, carbonCalculator);
         }
 
-        // ===== Launch frontend UI =====
+        
         SwingUtilities.invokeLater(() -> new ConsoleUI().show());
     }
 
-    // Helper method (clean + reusable)
+    
     public static void printDetails(UsageRecord record, EnergyCalculator ec, CarbonCalculator cc) {
         System.out.println(
                 record.getAppliance().getName() + " x" + record.getQuantity()

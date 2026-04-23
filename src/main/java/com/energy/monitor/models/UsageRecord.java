@@ -1,8 +1,6 @@
 package com.energy.monitor.models;
 
-/**
- * Model class for an energy usage record.
- */
+
 public class UsageRecord {
     private String recordId;
     private Appliance appliance;

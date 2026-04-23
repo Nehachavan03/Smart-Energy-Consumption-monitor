@@ -107,7 +107,7 @@ public class Dashboard extends JFrame {
         rightPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
 
         JPanel summaryPanel = new JPanel(new GridLayout(4, 1, 12, 12));
-        summaryPanel.setBackground(new Color(30, 41, 59)); // Premium Slate Blue
+        summaryPanel.setBackground(new Color(30, 41, 59)); 
         summaryPanel.setBorder(BorderFactory.createCompoundBorder(
                 BorderFactory.createTitledBorder(BorderFactory.createLineBorder(new Color(71, 85, 105)), "Summary", 0,
                         0, null, Color.WHITE),
@@ -120,14 +120,14 @@ public class Dashboard extends JFrame {
         highestUsageLabel.setFont(new Font("Segoe UI", Font.BOLD, 15));
         highestUsageLabel.setForeground(new Color(200, 220, 240));
         highestCarbonLabel.setFont(new Font("Segoe UI", Font.BOLD, 15));
-        highestCarbonLabel.setForeground(new Color(255, 180, 180)); // Soft Red for carbon
+        highestCarbonLabel.setForeground(new Color(255, 180, 180)); 
         summaryPanel.add(totalEnergyLabel);
         summaryPanel.add(totalCarbonLabel);
         summaryPanel.add(highestUsageLabel);
         summaryPanel.add(highestCarbonLabel);
 
-        roomTotalsArea.setBackground(new Color(15, 23, 42)); // Deep Navy
-        roomTotalsArea.setForeground(new Color(56, 189, 248)); // Vibrant Blue
+        roomTotalsArea.setBackground(new Color(15, 23, 42)); 
+        roomTotalsArea.setForeground(new Color(56, 189, 248)); 
         roomTotalsArea.setEditable(false);
         roomTotalsArea.setFont(new Font("Consolas", Font.BOLD, 13));
         JScrollPane roomScroll = new JScrollPane(roomTotalsArea);
@@ -141,7 +141,7 @@ public class Dashboard extends JFrame {
         rightPanel.add(roomScroll);
 
         JPanel inputPanel = new JPanel(new GridBagLayout());
-        inputPanel.setBackground(new Color(30, 41, 59)); // Matching Slate Blue
+        inputPanel.setBackground(new Color(30, 41, 59)); 
         inputPanel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(new Color(71, 85, 105)),
                 "Add Room / Device Usage", 0, 0, null, Color.WHITE));
         GridBagConstraints gbc = new GridBagConstraints();
@@ -247,9 +247,9 @@ public class Dashboard extends JFrame {
             UsageRecord record = new UsageRecord(recordId, appliance, quantity, hours, room);
             records.add(new RecordEntry(record));
             energyStore.addUsageRecord(record);
-            usageHeap.insert(record); // Alg Integration: Add to Heap
+            usageHeap.insert(record); 
 
-            // Alg Integration: Add to RoomTree
+            
             if (roomTree.findRoom(roomTree.getRoot(), room) == null) {
                 roomTree.addRoom("Home", room);
             }
@@ -277,7 +277,7 @@ public class Dashboard extends JFrame {
         totalEnergyLabel.setText("Total energy: " + String.format("%.2f", totalEnergy) + " kWh");
         totalCarbonLabel.setText("Total carbon: " + String.format("%.2f", totalCarbon) + " kg CO2");
 
-        // Alg Integration: Use MaxHeap for top usage
+        
         UsageRecord top = usageHeap.peek();
         if (top != null) {
             highestUsageLabel.setText("Top Energy: " + top.getRoom() + " -> " + top.getAppliance().getName() + " ("
@@ -289,7 +289,7 @@ public class Dashboard extends JFrame {
             highestCarbonLabel.setText("Top Carbon: none");
         }
 
-        // Alg Integration: Room-wise summary from RoomTree
+        
         StringBuilder roomSummary = new StringBuilder();
         for (RoomNode child : roomTree.getRoot().getChildren()) {
             double roomTotal = analysisService.calculateRoomTotal(child);

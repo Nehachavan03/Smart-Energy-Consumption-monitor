@@ -3,10 +3,7 @@ package com.energy.monitor.models;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Model: Represents a node in the hierarchical room structure.
- * Stores room name, associated appliances, and sub-rooms.
- */
+
 public class RoomNode {
     private String name;
     private List<UsageRecord> appliances;

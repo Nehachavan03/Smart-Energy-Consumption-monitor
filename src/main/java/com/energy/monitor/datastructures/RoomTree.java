@@ -3,10 +3,7 @@ package com.energy.monitor.datastructures;
 import com.energy.monitor.models.RoomNode;
 import com.energy.monitor.models.UsageRecord;
 
-/**
- * Data Structure: Tree structure for room organization.
- * Manages the parent-child relationships between different locations/rooms.
- */
+
 public class RoomTree {
     private RoomNode root;
 
@@ -18,9 +15,7 @@ public class RoomTree {
         return root;
     }
 
-    /**
-     * Adds a new room as a child of an existing parent room.
-     */
+    
     public void addRoom(String parentName, String newRoomName) {
         RoomNode parent = findRoom(root, parentName);
         if (parent != null) {
@@ -30,9 +25,7 @@ public class RoomTree {
         }
     }
 
-    /**
-     * Links an appliance usage record to a specific room.
-     */
+    
     public void addApplianceToRoom(String roomName, UsageRecord record) {
         RoomNode room = findRoom(root, roomName);
         if (room != null) {
@@ -42,9 +35,7 @@ public class RoomTree {
         }
     }
 
-    /**
-     * Removes an appliance usage record from a specific room.
-     */
+    
     public void removeApplianceFromRoom(String roomName, UsageRecord record) {
         RoomNode room = findRoom(root, roomName);
         if (room != null) {
@@ -54,9 +45,7 @@ public class RoomTree {
         }
     }
 
-    /**
-     * Deletes a room from the hierarchy.
-     */
+    
     public void deleteRoom(String name) {
         if (root.getName().equalsIgnoreCase(name)) {
             System.out.println("Cannot delete root room!");
@@ -77,9 +66,7 @@ public class RoomTree {
         return false;
     }
 
-    /**
-     * Recursive search to find a room by name.
-     */
+    
     public RoomNode findRoom(RoomNode current, String name) {
         if (current.getName().equalsIgnoreCase(name))
             return current;
