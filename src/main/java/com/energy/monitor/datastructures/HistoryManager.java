@@ -5,23 +5,21 @@ import java.util.LinkedList;
 
 public class HistoryManager {
 
-    // LinkedList → maintains order
-    private LinkedList<UsageRecord> usageHistory = new LinkedList<>();
+    private LinkedList<UsageRecord> history = new LinkedList<>();
 
     public void addRecord(UsageRecord record) {
-        usageHistory.add(record);
+        history.add(record);
     }
 
     public void printHistory() {
-        System.out.println("---- Usage History (LinkedList) ----");
-        for (UsageRecord r : usageHistory) {
-            System.out.println("[" +
-                    r.getAppliance().getName() + ", " +
-                    r.getEnergyKWh() + "]");
+        for (UsageRecord r : history) {
+            System.out.println(r);
         }
     }
 
     public UsageRecord getLastRecord() {
-        return usageHistory.isEmpty() ? null : usageHistory.getLast();
+        if (history.isEmpty())
+            return null;
+        return history.getLast();
     }
 }

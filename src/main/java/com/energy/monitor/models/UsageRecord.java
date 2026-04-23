@@ -1,17 +1,27 @@
 package com.energy.monitor.models;
 
-public class UsageRecord {
 
+public class UsageRecord {
     private String recordId;
     private Appliance appliance;
-    private int quantity; // NEW: number of appliances
+    private int quantity;
     private double hoursUsed;
+    private String room;
 
     public UsageRecord(String recordId, Appliance appliance, int quantity, double hoursUsed) {
         this.recordId = recordId;
         this.appliance = appliance;
         this.quantity = quantity;
         this.hoursUsed = hoursUsed;
+        this.room = "Unknown";
+    }
+
+    public UsageRecord(String recordId, Appliance appliance, int quantity, double hoursUsed, String room) {
+        this.recordId = recordId;
+        this.appliance = appliance;
+        this.quantity = quantity;
+        this.hoursUsed = hoursUsed;
+        this.room = room;
     }
 
     public String getRecordId() {
@@ -30,16 +40,20 @@ public class UsageRecord {
         return hoursUsed;
     }
 
-    // Updated energy calculation
+    public String getRoom() {
+        return room;
+    }
+
     public double getEnergyKWh() {
+        if (appliance == null)
+            return 0;
         return (appliance.getPowerWatts() * quantity * hoursUsed) / 1000.0;
     }
 
     @Override
     public String toString() {
-        return recordId + " | " +
-                appliance.getName() + " x" + quantity + " | " +
-                hoursUsed + " hrs | " +
-                getEnergyKWh() + " kWh";
+        return String.format("%s | %s x%d | %.1f hrs | %.2f kWh | Room: %s",
+                recordId, (appliance != null ? appliance.getName() : "Unknown"), quantity, hoursUsed, getEnergyKWh(),
+                room);
     }
 }
